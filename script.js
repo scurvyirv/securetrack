@@ -4,16 +4,49 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 // Collect employee data
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
+  let employees = [];
+  let addEmployee = true;
+
+  while (addEmployee) {
+    //enter first name
+    const firstName = prompt("Enter your first name");
+    //enter last name
+    const lastName = prompt("Enter your last name");
+    //enter salary
+    const salary = prompt("Enter your salary");
+    
+    employees.push({
+        firstName: firstName,
+        lastName: lastName,
+        salary: salary,
+    });
+
+    //to ask if they want to add another data entry for subsequent employees
+    addEmployee= confirm("Would you like to add another Employee's information?");
+    }
+    return employees;
 }
 
 // Display the average salary
-const displayAverageSalary = function(employeesArray) {
+const displayAverageSalary = function(employeesArray) { 
   // TODO: Calculate and display the average salary
-}
+
+    let totalSalary = 0 //this is your initial value
+        for (let i = 0; i < employeesArray.length; i++) {
+            totalSalary += +employeesArray[i].salary; //this 'adds on' to previous salaries added each time using += and i changes with each employee info added AKA employeesArray
+        } //the '+' sign preceding employeesArray[i] in line 36 forces string entries to become numbers *** you can use parseInt(array[i].index) to achieve the same thing!
+        const average = totalSalary / employeesArray.length; //this is the formula for average
+        console.log("total salary",totalSalary)
+        console.log("average", average);
+    return average; //this gives your average
+};
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
+    const index = Math.floor(Math.random() * employeesArray.length);
+    const randomEmployee = employeesArray[index];
+    console.log("random employee",randomEmployee);
 }
 
 /*
